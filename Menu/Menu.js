@@ -12,8 +12,8 @@ let menuItems = [
 /* 
   Step 1: Write a component called 'menuMaker' to create a menu like the markup below:
 
-  <div class="menu">
-    <ul>
+  <div class="menu"> ------menu
+    <ul> ------list
       {each menu item as a list item}
     </ul>
   </div>
@@ -31,3 +31,18 @@ let menuItems = [
 
   Step 6: Use 'menuMaker' to create a menu using the 'menuItems' array, and append the returned markup to the DOM.
 */
+function menuMaker(menuArr){
+
+  //creating elements
+  const menu = document.createElement('div');
+  const list = document.createElement('ul');
+  //end new elements
+
+  //nesting
+  menu.appendChild(list);
+  //end nesting
+
+  //adding class
+  menu.classList.add('menu');
+  //end class
+};
