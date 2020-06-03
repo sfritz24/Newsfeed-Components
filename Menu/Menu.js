@@ -45,4 +45,28 @@ function menuMaker(menuArr){
   //adding class
   menu.classList.add('menu');
   //end class
+
+  //adding li to ul
+  menuArr.forEach(index => {
+    // list.appendChild(document.createElement('li'));
+    const items = document.createElement('li');
+    items.textContent = index;
+    list.appendChild(items);
+  });
+  //end adding li
+
+  //selecting button
+  const menuButton = document.querySelector('.menu-button');
+  //end button
+
+  //event to button
+  menuButton.addEventListener('click', event =>{
+    menu.classList.toggle('menu--open');
+  });
+
+  return menu;
 };
+
+const header = document.querySelector('.header');
+
+header.appendChild(menuMaker(menuItems));
