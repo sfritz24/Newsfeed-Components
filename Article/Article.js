@@ -111,7 +111,7 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
-function articleMaker(artileData){
+function articleMaker(articleData){
 
   //creating the elements
   const article = document.createElement('div');
@@ -144,10 +144,31 @@ function articleMaker(artileData){
   paragraphOne.textContent = articleData.firstParagraph;
   paragraphTwo.textContent = articleData.secondParagraph;
   paragraphThree.textContent = articleData.thirdParagraph;
+  button.textContent = 'Click Me!';
   //end content
 
   //eventlistener for button
   button.addEventListener('click', event =>{
     article.classList.toggle('article-open');
   });
+  //end eventlistener
+
+  return article;
 };
+
+data.push({
+  title: 'Shanon Fritz',
+  date: 'June 3rd, 2020',
+  firstParagraph: `I like cats and dogs and all animals in general. They're just so cute!`,
+
+  secondParagraph: `I dislike pepperoni and mint and pepper. They don't taste very good to me.`,
+
+  thirdParagraph: `I will always listen to music and play games. I'm crafty and enjoy staying busy.`
+});
+
+const articles = document.querySelector('.articles');
+
+data.forEach(articleData =>{
+  const article = articleMaker(articleData);
+  articles.appendChild(article);
+});
