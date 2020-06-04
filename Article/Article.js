@@ -90,13 +90,13 @@ const data = [
 
 /* Step 1: Write a component called 'articleMaker' to create an article. You want your component to return markup like the template below: 
 
-  <div class="article">
-    <h2>{title of the article}</h2>
-    <p class="date">{date of the article}</p>
+  <div class="article"> ------article
+    <h2>{title of the article}</h2> ------articletitle
+    <p class="date">{date of the article}</p> ------articledate
 
-    {three separate paragraph elements}
+    {three separate paragraph elements} ------paragraphone..two..three
 
-    <span class='expandButton'></span>
+    <span class='expandButton'></span> ------button
   </div>
 
   Hint: You will need to use createElement more than once here!
@@ -111,3 +111,64 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
+function articleMaker(articleData){
+
+  //creating the elements
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const paragraphOne = document.createElement('p');
+  const paragraphTwo = document.createElement('p');
+  const paragraphThree = document.createElement('p');
+  const button = document.createElement('span');
+  //end of new elements
+
+  //adding classes to elements
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  button.classList.add('expandButton');
+  //end of classes
+
+  //adding nesting
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(paragraphOne);
+  article.appendChild(paragraphTwo);
+  article.appendChild(paragraphThree);
+  article.appendChild(button);
+  //end nesting
+
+  //add content
+  articleTitle.textContent = articleData.title;
+  articleDate.textContent = articleData.date;
+  paragraphOne.textContent = articleData.firstParagraph;
+  paragraphTwo.textContent = articleData.secondParagraph;
+  paragraphThree.textContent = articleData.thirdParagraph;
+  button.textContent = 'Click Me!';
+  //end content
+
+  //eventlistener for button
+  button.addEventListener('click', event =>{
+    article.classList.toggle('article-open');
+  });
+  //end eventlistener
+
+  return article;
+};
+
+data.push({
+  title: 'Shanon Fritz',
+  date: 'June 3rd, 2020',
+  firstParagraph: `I like cats and dogs and all animals in general. They're just so cute!`,
+
+  secondParagraph: `I dislike pepperoni and mint and pepper. They don't taste very good to me.`,
+
+  thirdParagraph: `I will always listen to music and play games. I'm crafty and enjoy staying busy.`
+});
+
+const articles = document.querySelector('.articles');
+
+data.forEach(articleData =>{
+  const article = articleMaker(articleData);
+  articles.appendChild(article);
+});
